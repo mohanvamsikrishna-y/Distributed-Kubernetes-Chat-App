@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskweb-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flaskweb
+  template:
+    metadata:
+      labels:
+        app: flaskweb
+    spec:
+      containers:
+      - name: flaskweb
+        image: mohanvamsikrishna/flaskweb:v2   
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_HOST
+          value: "db-service"    
+
